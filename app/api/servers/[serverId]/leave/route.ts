@@ -29,7 +29,7 @@ export async function PATCH(
             profileId: profile.id
           }
         }
-      },   
+      },
       data: {
         members: {
           deleteMany: {

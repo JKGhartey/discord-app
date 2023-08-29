@@ -47,7 +47,6 @@ export const NavigationItem = ({
             fill
             src={imageUrl}
             alt="Channel"
-            className="object-contain"
           />
         </div>
       </button>

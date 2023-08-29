@@ -42,14 +42,14 @@ const ChannelIdPage = async ({
     redirect("/");
   }
 
-  return (
+  return ( 
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
       <ChatHeader
         name={channel.name}
         serverId={channel.serverId}
         type="channel"
       />
-       {channel.type === ChannelType.TEXT && (
+      {channel.type === ChannelType.TEXT && (
         <>
           <ChatMessages
             member={member}
@@ -76,7 +76,6 @@ const ChannelIdPage = async ({
           />
         </>
       )}
-      
       {channel.type === ChannelType.AUDIO && (
         <MediaRoom
           chatId={channel.id}
@@ -92,7 +91,7 @@ const ChannelIdPage = async ({
         />
       )}
     </div>
-  );
+   );
 }
-
+ 
 export default ChannelIdPage;

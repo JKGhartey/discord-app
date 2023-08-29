@@ -70,7 +70,7 @@ export const ChatItem = ({
     if (member.id === currentMember.id) {
       return;
     }
-
+  
     router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
   }
 
@@ -119,17 +119,6 @@ export const ChatItem = ({
 
   const fileType = fileUrl?.split(".").pop();
 
-  // console.log(fileUrl)
-
-  // Extract the filename part from the URL
-  const filenameWithExtension = fileUrl?.substring(fileUrl?.lastIndexOf("/") + 1);
-  const filenameWithoutExtension = filenameWithExtension?.split("_")[1];
-
-  // Decode URL-encoded spaces and hyphens
-  const decodedFilename = decodeURIComponent((filenameWithoutExtension ?? "").replace(/%20/g, " "));
-
-  // console.log(decodedFilename)
-
   const isAdmin = currentMember.role === MemberRole.ADMIN;
   const isModerator = currentMember.role === MemberRole.MODERATOR;
   const isOwner = currentMember.id === member.id;
@@ -159,7 +148,7 @@ export const ChatItem = ({
             </span>
           </div>
           {isImage && (
-            <a
+            <a 
               href={fileUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -175,14 +164,14 @@ export const ChatItem = ({
           )}
           {isPDF && (
             <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
-              <FileIcon className="h-10 w-10 fill-rose-200 stroke-rose-400" />
-              <a
+              <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
+              <a 
                 href={fileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-2 text-sm text-rose-500 dark:text-rose-400 hover:underline"
+                className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"
               >
-                {decodedFilename}
+                PDF File
               </a>
             </div>
           )}
@@ -201,30 +190,30 @@ export const ChatItem = ({
           )}
           {!fileUrl && isEditing && (
             <Form {...form}>
-              <form
+              <form 
                 className="flex items-center w-full gap-x-2 pt-2"
                 onSubmit={form.handleSubmit(onSubmit)}>
-                <FormField
-                  control={form.control}
-                  name="content"
-                  render={({ field }) => (
-                    <FormItem className="flex-1">
-                      <FormControl>
-                        <div className="relative w-full">
-                          <Input
-                            disabled={isLoading}
-                            className="p-2 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200"
-                            placeholder="Edited message"
-                            {...field}
-                          />
-                        </div>
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <Button disabled={isLoading} size="sm" variant="primary">
-                  Save
-                </Button>
+                  <FormField
+                    control={form.control}
+                    name="content"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormControl>
+                          <div className="relative w-full">
+                            <Input
+                              disabled={isLoading}
+                              className="p-2 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200"
+                              placeholder="Edited message"
+                              {...field}
+                            />
+                          </div>
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                  <Button disabled={isLoading} size="sm" variant="primary">
+                    Save
+                  </Button>
               </form>
               <span className="text-[10px] mt-1 text-zinc-400">
                 Press escape to cancel, enter to save
@@ -245,10 +234,10 @@ export const ChatItem = ({
           )}
           <ActionTooltip label="Delete">
             <Trash
-              onClick={() => onOpen("deleteMessage", {
+              onClick={() => onOpen("deleteMessage", { 
                 apiUrl: `${socketUrl}/${id}`,
                 query: socketQuery,
-              })}
+               })}
               className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
             />
           </ActionTooltip>
